@@ -60,13 +60,13 @@ function ProjectCard({
       >
         <div className="relative z-10 p-6">
           <div className="mb-3 flex items-center justify-between">
-            <span className="text-xs font-mono text-[#999] dark:text-[#666]">
+            <span className="text-xs font-mono text-[#888] dark:text-[#777]">
               {String(index + 1).padStart(2, '0')}
             </span>
-            <ExternalLink size={14} className="text-[#ccc] transition-colors duration-200 group-hover:text-accent dark:text-[#444]" />
+            <ExternalLink size={14} className="text-[#aaa] transition-colors duration-200 group-hover:text-accent dark:text-[#555]" />
           </div>
           <h3 className="mb-2 text-xl font-semibold text-[#1a1a1a] dark:text-[#f5f5f0]">{title}</h3>
-          <p className="mb-4 text-sm leading-relaxed text-[#666] dark:text-[#888]">{description}</p>
+          <p className="mb-4 text-sm leading-relaxed text-[#444] dark:text-[#aaa]">{description}</p>
           <div className="flex flex-wrap gap-2">
             {tags.map((tag) => (
               <Badge key={tag}>{tag}</Badge>
@@ -106,7 +106,7 @@ export function Projects() {
           </h2>
         </ScrollReveal>
         <ScrollReveal delay={0.15}>
-          <p className="mb-10 text-base text-[#666] dark:text-[#888]">
+          <p className="mb-10 text-base text-[#555] dark:text-[#aaa]">
             A collection of projects I&apos;ve built and designed.
           </p>
         </ScrollReveal>

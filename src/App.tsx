@@ -5,7 +5,7 @@ import { Navbar } from './components/layout/Navbar'
 import { BottomNav } from './components/layout/BottomNav'
 import { Footer } from './components/layout/Footer'
 import { CustomCursor } from './components/effects/CustomCursor'
-import { ParticleBackground } from './components/effects/ParticleBackground'
+import { GeometricBackground } from './components/effects/GeometricBackground'
 import { SplashScreen } from './components/effects/SplashScreen'
 import { Hero } from './components/sections/Hero'
 import { About } from './components/sections/About'
@@ -18,12 +18,12 @@ export default function App() {
     <ThemeProvider>
       <SplashScreen />
       <CustomCursor />
-      <ParticleBackground />
+      <GeometricBackground />
 
       <Navbar />
       <BottomNav />
 
-      <main className="pt-16">
+      <main className="pt-20">
         <Hero />
         <About />
         <Projects />

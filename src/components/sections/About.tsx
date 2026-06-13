@@ -27,8 +27,8 @@ function Counter({ value, suffix, label }: { value: string; suffix: string; labe
         </motion.span>
         <span className="text-accent">+</span>
       </motion.p>
-      <p className="mt-1 text-sm text-[#666] dark:text-[#888]">{suffix}</p>
-      <p className="text-xs text-[#999] dark:text-[#666]">{label}</p>
+      <p className="mt-1 text-sm text-[#555] dark:text-[#aaa]">{suffix}</p>
+      <p className="text-xs text-[#888] dark:text-[#777]">{label}</p>
     </div>
   )
 }
@@ -55,7 +55,7 @@ export function About() {
           <ScrollReveal direction="right" delay={0.2} className="lg:col-span-2">
             <div className="flex justify-center lg:justify-start">
               <Avatar className="h-48 w-48 rounded-2xl border border-black/10 shadow-lg sm:h-56 sm:w-56 dark:border-white/10">
-                <AvatarFallback className="rounded-2xl bg-black/5 text-4xl text-[#999] dark:bg-white/5 dark:text-[#666]">
+                <AvatarFallback className="rounded-2xl bg-black/5 text-4xl text-[#888] dark:bg-white/5 dark:text-[#777]">
                   P
                 </AvatarFallback>
               </Avatar>
@@ -64,7 +64,7 @@ export function About() {
 
           <div className="lg:col-span-3">
             <ScrollReveal delay={0.3}>
-              <div className="space-y-4 text-base leading-relaxed text-[#666] dark:text-[#888] sm:text-lg">
+              <div className="space-y-4 text-base leading-relaxed text-[#444] dark:text-[#aaa] sm:text-lg">
                 {portfolioData.about.map((paragraph, i) => (
                   <p key={i}>{paragraph}</p>
                 ))}

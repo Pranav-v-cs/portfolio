@@ -46,7 +46,7 @@ export function Hero() {
     <section
       id="hero"
       ref={ref}
-      className="relative flex min-h-dvh items-center justify-center overflow-hidden px-6 pt-20"
+      className="relative flex min-h-dvh items-center justify-center overflow-hidden px-6"
     >
       <motion.div style={{ y: bgY }} className="pointer-events-none absolute inset-0">
         <FloatingOrb delay={0} size={400} x={-10} y={20} opacity={0.12} />
@@ -93,7 +93,7 @@ export function Hero() {
           </span>
         </h1>
 
-        <p className="mb-2 text-lg text-[#666] dark:text-[#888] sm:text-xl">
+        <p className="mb-2 text-lg text-[#555] dark:text-[#aaa] sm:text-xl">
           {roleWords.map((word, i) => (
             <motion.span
               key={i}
@@ -112,7 +112,7 @@ export function Hero() {
         </p>
 
         <motion.p
-          className="mx-auto mb-10 max-w-lg text-sm text-[#999] dark:text-[#666] sm:text-base"
+          className="mx-auto mb-10 max-w-lg text-sm text-[#777] dark:text-[#777] sm:text-base"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 1.8 }}
@@ -149,7 +149,7 @@ export function Hero() {
       </motion.div>
 
       <motion.button
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-[#999] transition-colors hover:text-accent dark:text-[#666]"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-[#aaa] transition-colors hover:text-accent dark:text-[#555]"
         animate={{ y: [0, 8, 0] }}
         transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
         onClick={scrollToProjects}

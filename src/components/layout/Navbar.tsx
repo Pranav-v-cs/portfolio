@@ -43,62 +43,60 @@ export function Navbar() {
   }
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50">
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
-        <div className="glass flex items-center gap-6 rounded-2xl px-5 py-2.5 shadow-sm">
+    <header className="fixed top-4 left-0 right-0 z-50 flex justify-center px-4">
+      <div className="glass flex items-center gap-6 rounded-2xl px-5 py-2.5 shadow-sm">
+        <button
+          onClick={() => scrollTo('hero')}
+          className="text-lg font-bold tracking-tight text-[#1a1a1a] dark:text-[#f5f5f0]"
+        >
+          P<span className="text-accent">.</span>
+        </button>
+
+        <nav className="hidden items-center gap-1 md:flex">
+          {links.map(({ id, label }) => (
+            <button
+              key={id}
+              onClick={() => scrollTo(id)}
+              className={cn(
+                'relative rounded-lg px-3 py-1.5 text-sm font-medium transition-colors duration-200',
+                active === id
+                  ? 'text-accent'
+                  : 'text-[#555] hover:text-[#1a1a1a] dark:text-[#aaa] dark:hover:text-[#f5f5f0]'
+              )}
+            >
+              {active === id && (
+                <motion.div
+                  layoutId="nav-pill"
+                  className="absolute inset-0 rounded-lg bg-accent/10"
+                  transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+                />
+              )}
+              <span className="relative z-10">{label}</span>
+            </button>
+          ))}
+        </nav>
+
+        <div className="flex items-center gap-2">
           <button
-            onClick={() => scrollTo('hero')}
-            className="text-lg font-bold tracking-tight text-[#1a1a1a] dark:text-[#f5f5f0]"
+            onClick={toggle}
+            className="flex h-8 w-8 items-center justify-center rounded-lg text-[#555] transition-colors hover:text-[#1a1a1a] dark:text-[#aaa] dark:hover:text-[#f5f5f0]"
           >
-            P<span className="text-accent">.</span>
+            <motion.div
+              key={theme}
+              initial={{ rotate: -90, opacity: 0 }}
+              animate={{ rotate: 0, opacity: 1 }}
+              transition={{ duration: 0.3 }}
+            >
+              {theme === 'dark' ? <Sun size={15} /> : <Moon size={15} />}
+            </motion.div>
           </button>
 
-          <nav className="hidden items-center gap-1 md:flex">
-            {links.map(({ id, label }) => (
-              <button
-                key={id}
-                onClick={() => scrollTo(id)}
-                className={cn(
-                  'relative rounded-lg px-3 py-1.5 text-sm font-medium transition-colors duration-200',
-                  active === id
-                    ? 'text-accent'
-                    : 'text-[#666] hover:text-[#1a1a1a] dark:text-[#888] dark:hover:text-[#f5f5f0]'
-                )}
-              >
-                {active === id && (
-                  <motion.div
-                    layoutId="nav-pill"
-                    className="absolute inset-0 rounded-lg bg-accent/10"
-                    transition={{ type: 'spring', stiffness: 400, damping: 30 }}
-                  />
-                )}
-                <span className="relative z-10">{label}</span>
-              </button>
-            ))}
-          </nav>
-
-          <div className="flex items-center gap-2">
-            <button
-              onClick={toggle}
-              className="flex h-8 w-8 items-center justify-center rounded-lg text-[#666] transition-colors hover:text-[#1a1a1a] dark:text-[#888] dark:hover:text-[#f5f5f0]"
-            >
-              <motion.div
-                key={theme}
-                initial={{ rotate: -90, opacity: 0 }}
-                animate={{ rotate: 0, opacity: 1 }}
-                transition={{ duration: 0.3 }}
-              >
-                {theme === 'dark' ? <Sun size={15} /> : <Moon size={15} />}
-              </motion.div>
-            </button>
-
-            <button
-              onClick={() => setMenuOpen(!menuOpen)}
-              className="flex h-8 w-8 items-center justify-center rounded-lg text-[#666] transition-colors hover:text-[#1a1a1a] dark:text-[#888] dark:hover:text-[#f5f5f0] md:hidden"
-            >
-              {menuOpen ? <X size={18} /> : <Menu size={18} />}
-            </button>
-          </div>
+          <button
+            onClick={() => setMenuOpen(!menuOpen)}
+            className="flex h-8 w-8 items-center justify-center rounded-lg text-[#555] transition-colors hover:text-[#1a1a1a] dark:text-[#aaa] dark:hover:text-[#f5f5f0] md:hidden"
+          >
+            {menuOpen ? <X size={18} /> : <Menu size={18} />}
+          </button>
         </div>
       </div>
 
@@ -109,7 +107,7 @@ export function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.2 }}
-            className="mx-6 mt-2 md:hidden"
+            className="absolute top-full mt-3 w-[calc(100%-2rem)] max-w-md md:hidden"
           >
             <nav className="glass rounded-2xl p-3">
               {links.map(({ id, label }) => (
@@ -120,7 +118,7 @@ export function Navbar() {
                     'flex w-full items-center rounded-xl px-4 py-3 text-sm font-medium transition-colors',
                     active === id
                       ? 'bg-accent/10 text-accent'
-                      : 'text-[#666] hover:bg-black/5 hover:text-[#1a1a1a] dark:text-[#888] dark:hover:bg-white/5 dark:hover:text-[#f5f5f0]'
+                      : 'text-[#555] hover:bg-black/5 hover:text-[#1a1a1a] dark:text-[#aaa] dark:hover:bg-white/5 dark:hover:text-[#f5f5f0]'
                   )}
                 >
                   {label}

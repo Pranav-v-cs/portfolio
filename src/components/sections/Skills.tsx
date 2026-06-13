@@ -14,7 +14,7 @@ function SkillBar({ name, level, category }: { name: string; level: number; cate
       <div className="rounded-2xl border border-black/10 bg-white/70 p-5 shadow-lg shadow-black/5 backdrop-blur-xl dark:border-white/10 dark:bg-white/[0.04] dark:shadow-black/20">
         <div className="mb-1 flex items-center justify-between">
           <span className="text-sm font-medium text-[#1a1a1a] dark:text-[#f5f5f0]">{name}</span>
-          <span className="font-mono text-xs text-[#999] dark:text-[#666]">{category}</span>
+          <span className="font-mono text-xs text-[#888] dark:text-[#777]">{category}</span>
         </div>
         <div className="relative mt-3 h-1.5 overflow-hidden rounded-full bg-black/10 dark:bg-white/10">
           <motion.div
@@ -47,7 +47,7 @@ export function Skills() {
           </h2>
         </ScrollReveal>
         <ScrollReveal delay={0.15}>
-          <p className="mb-10 text-base text-[#666] dark:text-[#888]">
+          <p className="mb-10 text-base text-[#555] dark:text-[#aaa]">
             Technologies I work with day-to-day.
           </p>
         </ScrollReveal>

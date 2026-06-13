@@ -51,7 +51,7 @@ export function BottomNav() {
               'relative flex h-10 w-10 items-center justify-center rounded-full transition-all duration-200',
               active === id
                 ? 'text-accent'
-                : 'text-[#999] hover:text-[#666] dark:text-[#666] dark:hover:text-[#888]'
+                : 'text-[#888] hover:text-[#444] dark:text-[#777] dark:hover:text-[#aaa]'
             )}
           >
             {active === id && (

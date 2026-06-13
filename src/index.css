@@ -28,8 +28,8 @@
   }
 
   body {
-    @apply bg-[#f5f5f0] text-[#1a1a1a]/90 font-sans transition-colors duration-300;
-    @apply dark:bg-[#0a0a0a] dark:text-[#f5f5f0]/90;
+    @apply bg-[#f5f5f0] text-[#1a1a1a] font-sans transition-colors duration-300;
+    @apply dark:bg-[#0a0a0a] dark:text-[#f5f5f0];
   }
 
   ::selection {
@@ -37,6 +37,40 @@
   }
 }
 
+/* ===== Geometric background pattern ===== */
+@utility bg-geometric {
+  background-image:
+    radial-gradient(circle at 1px 1px, rgba(0, 0, 0, 0.06) 1px, transparent 0);
+  background-size: 40px 40px;
+}
+
+.dark .bg-geometric {
+  background-image:
+    radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.03) 1px, transparent 0);
+}
+
+/* ===== Floating geometric shapes ===== */
+@keyframes float-a {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  33% { transform: translate(30px, -40px) rotate(5deg); }
+  66% { transform: translate(-20px, 20px) rotate(-3deg); }
+}
+
+@keyframes float-b {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  50% { transform: translate(-30px, 30px) rotate(-8deg); }
+}
+
+@keyframes float-c {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(20px, -20px) scale(1.05); }
+}
+
+@utility shape-float-a { animation: float-a 20s ease-in-out infinite; }
+@utility shape-float-b { animation: float-b 25s ease-in-out infinite; }
+@utility shape-float-c { animation: float-c 18s ease-in-out infinite; }
+
+/* ===== Glass ===== */
 @utility glass {
   @apply bg-white/70 backdrop-blur-xl border border-black/5 shadow-lg shadow-black/5;
   @apply dark:bg-white/[0.04] dark:border-white/[0.06] dark:shadow-black/20;

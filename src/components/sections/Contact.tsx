@@ -26,7 +26,7 @@ export function Contact() {
           </h2>
         </ScrollReveal>
         <ScrollReveal delay={0.15}>
-          <p className="mb-12 text-base text-[#666] dark:text-[#888]">
+          <p className="mb-12 text-base text-[#555] dark:text-[#aaa]">
             Have a project in mind? Let&apos;s build something together.
           </p>
         </ScrollReveal>
@@ -39,26 +39,26 @@ export function Contact() {
             >
               <div className="mb-5 grid gap-5 sm:grid-cols-2">
                 <div>
-                  <label className="mb-2 block text-xs font-medium text-[#666] dark:text-[#888]">
+                  <label className="mb-2 block text-xs font-medium text-[#555] dark:text-[#aaa]">
                     Name
                   </label>
                   <Input placeholder="Your name" />
                 </div>
                 <div>
-                  <label className="mb-2 block text-xs font-medium text-[#666] dark:text-[#888]">
+                  <label className="mb-2 block text-xs font-medium text-[#555] dark:text-[#aaa]">
                     Email
                   </label>
                   <Input type="email" placeholder="you@example.com" />
                 </div>
               </div>
               <div className="mb-5">
-                <label className="mb-2 block text-xs font-medium text-[#666] dark:text-[#888]">
+                <label className="mb-2 block text-xs font-medium text-[#555] dark:text-[#aaa]">
                   Subject
                 </label>
                 <Input placeholder="What's this about?" />
               </div>
               <div className="mb-6">
-                <label className="mb-2 block text-xs font-medium text-[#666] dark:text-[#888]">
+                <label className="mb-2 block text-xs font-medium text-[#555] dark:text-[#aaa]">
                   Message
                 </label>
                 <Textarea placeholder="Tell me about your project..." />
@@ -78,16 +78,16 @@ export function Contact() {
                 <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-xl bg-accent/10 text-accent">
                   <Mail size={18} />
                 </div>
-                <p className="text-sm text-[#666] dark:text-[#888]">hello@pranav.dev</p>
-                <p className="mt-1 text-xs text-[#999] dark:text-[#666]">Always happy to chat</p>
+                <p className="text-sm text-[#444] dark:text-[#aaa]">hello@pranav.dev</p>
+                <p className="mt-1 text-xs text-[#888] dark:text-[#777]">Always happy to chat</p>
               </div>
 
               <div className="glass-card p-5">
                 <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-xl bg-accent/10 text-accent">
                   <MapPin size={18} />
                 </div>
-                <p className="text-sm text-[#666] dark:text-[#888]">Remote / Worldwide</p>
-                <p className="mt-1 text-xs text-[#999] dark:text-[#666]">Available for freelance</p>
+                <p className="text-sm text-[#444] dark:text-[#aaa]">Remote / Worldwide</p>
+                <p className="mt-1 text-xs text-[#888] dark:text-[#777]">Available for freelance</p>
               </div>
 
               <div className="glass-card p-5">
@@ -98,11 +98,11 @@ export function Contact() {
                   href={portfolioData.social.github}
                   target="_blank"
                   rel="noreferrer"
-                  className="text-sm text-[#666] transition-colors duration-200 hover:text-accent dark:text-[#888]"
+                  className="text-sm text-[#444] transition-colors duration-200 hover:text-accent dark:text-[#aaa]"
                 >
                   github.com/your-username
                 </a>
-                <p className="mt-1 text-xs text-[#999] dark:text-[#666]">Check out my code</p>
+                <p className="mt-1 text-xs text-[#888] dark:text-[#777]">Check out my code</p>
               </div>
             </div>
           </ScrollReveal>
