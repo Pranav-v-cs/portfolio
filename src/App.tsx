@@ -1,7 +1,7 @@
 'use client'
 
 import { ThemeProvider } from './hooks/useTheme'
-import { SideDock } from './components/layout/SideDock'
+import { Navbar } from './components/layout/Navbar'
 import { BottomNav } from './components/layout/BottomNav'
 import { Footer } from './components/layout/Footer'
 import { CustomCursor } from './components/effects/CustomCursor'
@@ -20,26 +20,14 @@ export default function App() {
       <CustomCursor />
       <ParticleBackground />
 
-      <SideDock />
+      <Navbar />
       <BottomNav />
 
-      <main className="lg:ml-20">
+      <main className="pt-16">
         <Hero />
-        <div className="mx-auto max-w-6xl px-6">
-          <hr className="border-white/5" />
-        </div>
         <About />
-        <div className="mx-auto max-w-6xl px-6">
-          <hr className="border-white/5" />
-        </div>
         <Projects />
-        <div className="mx-auto max-w-6xl px-6">
-          <hr className="border-white/5" />
-        </div>
         <Skills />
-        <div className="mx-auto max-w-6xl px-6">
-          <hr className="border-white/5" />
-        </div>
         <Contact />
         <Footer />
       </main>

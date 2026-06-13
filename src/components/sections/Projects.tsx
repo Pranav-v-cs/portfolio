@@ -53,20 +53,20 @@ function ProjectCard({
     <motion.div variants={fadeInItem()}>
       <div
         ref={cardRef}
-        className="group relative cursor-pointer overflow-hidden rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl transition-all duration-200 hover:border-accent/30 hover:shadow-lg hover:shadow-accent/5"
+        className="group relative cursor-pointer overflow-hidden rounded-2xl border border-black/10 bg-white/70 shadow-lg shadow-black/5 backdrop-blur-xl transition-all duration-200 hover:border-accent/30 hover:shadow-accent/5 dark:border-white/10 dark:bg-white/[0.04] dark:shadow-black/20"
         style={{ transition: 'transform 0.15s ease-out' }}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
       >
         <div className="relative z-10 p-6">
           <div className="mb-3 flex items-center justify-between">
-            <span className="text-xs text-white/30 font-mono">
+            <span className="text-xs font-mono text-[#999] dark:text-[#666]">
               {String(index + 1).padStart(2, '0')}
             </span>
-            <ExternalLink size={14} className="text-white/20 transition-colors duration-200 group-hover:text-accent" />
+            <ExternalLink size={14} className="text-[#ccc] transition-colors duration-200 group-hover:text-accent dark:text-[#444]" />
           </div>
-          <h3 className="mb-2 text-xl font-semibold text-white">{title}</h3>
-          <p className="mb-4 text-sm leading-relaxed text-white/50">{description}</p>
+          <h3 className="mb-2 text-xl font-semibold text-[#1a1a1a] dark:text-[#f5f5f0]">{title}</h3>
+          <p className="mb-4 text-sm leading-relaxed text-[#666] dark:text-[#888]">{description}</p>
           <div className="flex flex-wrap gap-2">
             {tags.map((tag) => (
               <Badge key={tag}>{tag}</Badge>
@@ -74,7 +74,6 @@ function ProjectCard({
           </div>
         </div>
 
-        {/* Hover-reveal gradient overlay */}
         <div
           className={`absolute inset-0 bg-gradient-to-br ${gradient} opacity-0 transition-opacity duration-300 group-hover:opacity-100`}
         />
@@ -93,7 +92,7 @@ export function Projects() {
   return (
     <section
       id="projects"
-      className="relative flex min-h-dvh items-center px-6 py-32"
+      className="relative px-6 py-40"
     >
       <div className="mx-auto w-full max-w-5xl">
         <ScrollReveal>
@@ -102,12 +101,12 @@ export function Projects() {
           </div>
         </ScrollReveal>
         <ScrollReveal delay={0.1}>
-          <h2 className="mb-2 text-4xl font-bold tracking-tight text-white sm:text-5xl">
+          <h2 className="mb-2 text-4xl font-bold tracking-tight text-[#1a1a1a] dark:text-[#f5f5f0] sm:text-5xl">
             Selected work
           </h2>
         </ScrollReveal>
         <ScrollReveal delay={0.15}>
-          <p className="mb-10 text-base text-white/40">
+          <p className="mb-10 text-base text-[#666] dark:text-[#888]">
             A collection of projects I&apos;ve built and designed.
           </p>
         </ScrollReveal>
@@ -122,7 +121,7 @@ export function Projects() {
               ))}
             </TabsList>
             <TabsContent value={category}>
-              <StaggerReveal className="grid gap-6 sm:grid-cols-2">
+              <StaggerReveal className="grid gap-8 sm:grid-cols-2">
                 {filtered.map((project, i) => (
                   <ProjectCard key={project.title} {...project} index={i} />
                 ))}

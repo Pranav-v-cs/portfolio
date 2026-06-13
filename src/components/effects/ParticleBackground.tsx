@@ -31,14 +31,14 @@ export function ParticleBackground() {
     resize()
     window.addEventListener('resize', resize)
 
-    const count = Math.min(60, Math.floor((window.innerWidth * window.innerHeight) / 20000))
+    const count = Math.min(50, Math.floor((window.innerWidth * window.innerHeight) / 25000))
     particlesRef.current = Array.from({ length: count }, () => ({
       x: Math.random() * canvas.width,
       y: Math.random() * canvas.height,
       vx: (Math.random() - 0.5) * 0.3,
       vy: (Math.random() - 0.5) * 0.3 - 0.1,
-      size: Math.random() * 2 + 0.5,
-      alpha: Math.random() * 0.5 + 0.1,
+      size: Math.random() * 2 + 1,
+      alpha: Math.random() * 0.3 + 0.05,
     }))
 
     const animate = () => {
@@ -68,7 +68,7 @@ export function ParticleBackground() {
 
         ctx.beginPath()
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2)
-        ctx.fillStyle = `rgba(6, 182, 212, ${p.alpha})`
+        ctx.fillStyle = `rgba(5, 150, 105, ${p.alpha})`
         ctx.fill()
       }
 

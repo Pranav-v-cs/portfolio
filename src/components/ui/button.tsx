@@ -11,9 +11,9 @@ const buttonVariants = cva(
         default:
           'bg-accent text-white hover:brightness-110 active:brightness-90',
         outline:
-          'border border-white/20 bg-transparent hover:bg-white/10 text-white/90',
+          'border border-black/20 bg-transparent hover:bg-black/5 text-[#1a1a1a] dark:border-white/20 dark:hover:bg-white/5 dark:text-[#f5f5f0]',
         ghost:
-          'bg-transparent hover:bg-white/10 text-white/70 hover:text-white/90',
+          'bg-transparent hover:bg-black/5 text-[#666] hover:text-[#1a1a1a] dark:hover:bg-white/5 dark:text-[#888] dark:hover:text-[#f5f5f0]',
       },
       size: {
         default: 'h-10 px-5 py-2',

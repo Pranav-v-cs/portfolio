@@ -10,7 +10,7 @@ import { portfolioData } from '../../data/portfolio'
 const nameLetters = portfolioData.name.split('')
 const roleWords = portfolioData.role.split(' ')
 
-function FloatingOrb({ delay = 0, size = 300, x = 0, y = 0, opacity = 0.15 }) {
+function FloatingOrb({ delay = 0, size = 300, x = 0, y = 0, opacity = 0.12 }) {
   return (
     <motion.div
       className="pointer-events-none absolute rounded-full bg-accent blur-3xl"
@@ -35,7 +35,7 @@ export function Hero() {
     target: ref,
     offset: ['start start', 'end start'],
   })
-  const bgY = useTransform(scrollYProgress, [0, 1], ['0%', '40%'])
+  const bgY = useTransform(scrollYProgress, [0, 1], ['0%', '30%'])
   const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0])
 
   const scrollToProjects = () => {
@@ -46,7 +46,7 @@ export function Hero() {
     <section
       id="hero"
       ref={ref}
-      className="relative flex min-h-dvh items-center justify-center overflow-hidden px-6 pt-24 lg:pt-0"
+      className="relative flex min-h-dvh items-center justify-center overflow-hidden px-6 pt-20"
     >
       <motion.div style={{ y: bgY }} className="pointer-events-none absolute inset-0">
         <FloatingOrb delay={0} size={400} x={-10} y={20} opacity={0.12} />
@@ -70,13 +70,13 @@ export function Hero() {
             {nameLetters.map((letter, i) => (
               <motion.span
                 key={i}
-                className="inline-block text-white"
+                className="inline-block text-[#1a1a1a] dark:text-[#f5f5f0]"
                 initial={{ opacity: 0, y: 40, rotateX: -90 }}
                 animate={{ opacity: 1, y: 0, rotateX: 0 }}
                 transition={{
                   duration: 0.5,
                   delay: 0.5 + i * 0.06,
-                  ease: [0.25, 0.1, 0.25, 1],
+                  ease: [0.25, 0.1, 0.25, 1] as const,
                 }}
               >
                 {letter === ' ' ? '\u00A0' : letter}
@@ -93,7 +93,7 @@ export function Hero() {
           </span>
         </h1>
 
-        <p className="mb-2 text-lg text-white/60 sm:text-xl">
+        <p className="mb-2 text-lg text-[#666] dark:text-[#888] sm:text-xl">
           {roleWords.map((word, i) => (
             <motion.span
               key={i}
@@ -103,7 +103,7 @@ export function Hero() {
               transition={{
                 duration: 0.5,
                 delay: 1.2 + i * 0.15,
-                ease: [0.25, 0.1, 0.25, 1],
+                ease: [0.25, 0.1, 0.25, 1] as const,
               }}
             >
               {word}
@@ -112,7 +112,7 @@ export function Hero() {
         </p>
 
         <motion.p
-          className="mx-auto mb-10 max-w-lg text-sm text-white/40 sm:text-base"
+          className="mx-auto mb-10 max-w-lg text-sm text-[#999] dark:text-[#666] sm:text-base"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 1.8 }}
@@ -149,7 +149,7 @@ export function Hero() {
       </motion.div>
 
       <motion.button
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/20 transition-colors hover:text-accent"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-[#999] transition-colors hover:text-accent dark:text-[#666]"
         animate={{ y: [0, 8, 0] }}
         transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
         onClick={scrollToProjects}

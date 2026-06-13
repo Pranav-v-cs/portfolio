@@ -11,7 +11,7 @@ const TabsList = forwardRef<
   <TabsPrimitive.List
     ref={ref}
     className={cn(
-      'inline-flex items-center gap-1 rounded-2xl bg-white/5 p-1',
+      'inline-flex items-center gap-1 rounded-2xl bg-black/5 p-1 dark:bg-white/5',
       className
     )}
     {...props}
@@ -26,7 +26,7 @@ const TabsTrigger = forwardRef<
   <TabsPrimitive.Trigger
     ref={ref}
     className={cn(
-      'inline-flex items-center justify-center whitespace-nowrap rounded-xl px-4 py-1.5 text-sm font-medium text-white/50 transition-all duration-200 data-[state=active]:bg-accent data-[state=active]:text-white data-[state=active]:shadow-sm',
+      'inline-flex items-center justify-center whitespace-nowrap rounded-xl px-4 py-1.5 text-sm font-medium text-[#999] transition-all duration-200 data-[state=active]:bg-accent data-[state=active]:text-white data-[state=active]:shadow-sm dark:text-[#666]',
       className
     )}
     {...props}

@@ -63,18 +63,18 @@ export function StaggerReveal({
   const isInView = useInView(ref, { once, margin: '-80px' })
 
   return (
-    <div ref={ref} className={className}>
-      <motion.div
-        initial="hidden"
-        animate={isInView ? 'visible' : 'hidden'}
-        variants={{
-          hidden: {},
-          visible: { transition: { staggerChildren: staggerDelay } },
-        }}
-      >
-        {children}
-      </motion.div>
-    </div>
+    <motion.div
+      ref={ref}
+      className={className}
+      initial="hidden"
+      animate={isInView ? 'visible' : 'hidden'}
+      variants={{
+        hidden: {},
+        visible: { transition: { staggerChildren: staggerDelay } },
+      }}
+    >
+      {children}
+    </motion.div>
   )
 }
 
