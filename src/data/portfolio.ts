@@ -1,0 +1,61 @@
+export const portfolioData = {
+  name: 'Pranav',
+  role: 'Developer & Designer',
+  tagline: 'Crafting digital experiences with clean code & creative design.',
+  about: [
+    'A passionate developer and designer who loves building beautiful, functional digital experiences. With a keen eye for detail and a love for clean code, I transform ideas into polished products.',
+    'Currently exploring the intersection of animation, interactivity, and modern web technologies to create interfaces that feel alive.',
+  ],
+  stats: [
+    { label: 'Experience', value: '3+', suffix: 'Years' },
+    { label: 'Projects', value: '20+', suffix: 'Completed' },
+    { label: 'Clients', value: '15+', suffix: 'Happy' },
+  ],
+  skills: [
+    { name: 'React', level: 95, category: 'Frontend' },
+    { name: 'TypeScript', level: 90, category: 'Language' },
+    { name: 'TailwindCSS', level: 92, category: 'Frontend' },
+    { name: 'Framer Motion', level: 85, category: 'Animation' },
+    { name: 'Next.js', level: 88, category: 'Frontend' },
+    { name: 'Node.js', level: 80, category: 'Backend' },
+    { name: 'Figma', level: 82, category: 'Design' },
+    { name: 'Git', level: 88, category: 'Tools' },
+  ],
+  projects: [
+    {
+      title: 'Nova',
+      description: 'A modern design system built with React, featuring accessible components and seamless animations.',
+      tags: ['React', 'TypeScript', 'Framer Motion'],
+      category: 'Web',
+      image: null,
+      gradient: 'from-violet-500/20 to-cyan-500/20',
+    },
+    {
+      title: 'Orbit',
+      description: 'Real-time dashboard for monitoring distributed systems with interactive data visualizations.',
+      tags: ['Next.js', 'D3.js', 'WebSocket'],
+      category: 'Web',
+      image: null,
+      gradient: 'from-rose-500/20 to-amber-500/20',
+    },
+    {
+      title: 'Lumina',
+      description: 'AI-powered photo editor with smart filters, object removal, and batch processing capabilities.',
+      tags: ['Python', 'TensorFlow', 'React'],
+      category: 'Design',
+      image: null,
+      gradient: 'from-emerald-500/20 to-teal-500/20',
+    },
+    {
+      title: 'Pulse',
+      description: 'Mobile-first fitness tracking app with social features, workout plans, and progress analytics.',
+      tags: ['React Native', 'Firebase', 'GraphQL'],
+      category: 'Mobile',
+      image: null,
+      gradient: 'from-blue-500/20 to-indigo-500/20',
+    },
+  ],
+  social: {
+    github: 'https://github.com/your-username',
+  },
+}
