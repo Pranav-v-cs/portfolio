@@ -1,10 +1,10 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { cn } from '../../lib/utils'
 import { useTheme } from '../../hooks/useTheme'
-import { Menu, X, Sun, Moon } from 'lucide-react'
+import { Sun, Moon } from 'lucide-react'
 
 const links = [
   { id: 'hero', label: 'Home' },
@@ -16,7 +16,6 @@ const links = [
 
 export function Navbar() {
   const [active, setActive] = useState('hero')
-  const [menuOpen, setMenuOpen] = useState(false)
   const { theme, toggle } = useTheme()
 
   useEffect(() => {
@@ -39,7 +38,6 @@ export function Navbar() {
 
   const scrollTo = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
-    setMenuOpen(false)
   }
 
   return (
@@ -61,7 +59,7 @@ export function Navbar() {
                 'relative rounded-lg px-3 py-1.5 text-sm font-medium transition-colors duration-200',
                 active === id
                   ? 'text-accent'
-                  : 'text-[#555] hover:text-[#1a1a1a] dark:text-[#aaa] dark:hover:text-[#f5f5f0]'
+                  : 'text-secondary hover:text-[#1a1a1a] dark:hover:text-[#f5f5f0]'
               )}
             >
               {active === id && (
@@ -79,7 +77,7 @@ export function Navbar() {
         <div className="flex items-center gap-2">
           <button
             onClick={toggle}
-            className="flex h-8 w-8 items-center justify-center rounded-lg text-[#555] transition-colors hover:text-[#1a1a1a] dark:text-[#aaa] dark:hover:text-[#f5f5f0]"
+            className="flex h-8 w-8 items-center justify-center rounded-lg text-secondary transition-colors hover:text-[#1a1a1a] dark:hover:text-[#f5f5f0]"
           >
             <motion.div
               key={theme}
@@ -90,44 +88,8 @@ export function Navbar() {
               {theme === 'dark' ? <Sun size={15} /> : <Moon size={15} />}
             </motion.div>
           </button>
-
-          <button
-            onClick={() => setMenuOpen(!menuOpen)}
-            className="flex h-8 w-8 items-center justify-center rounded-lg text-[#555] transition-colors hover:text-[#1a1a1a] dark:text-[#aaa] dark:hover:text-[#f5f5f0] md:hidden"
-          >
-            {menuOpen ? <X size={18} /> : <Menu size={18} />}
-          </button>
         </div>
       </div>
-
-      <AnimatePresence>
-        {menuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.2 }}
-            className="absolute top-full mt-3 w-[calc(100%-2rem)] max-w-md md:hidden"
-          >
-            <nav className="glass rounded-2xl p-3">
-              {links.map(({ id, label }) => (
-                <button
-                  key={id}
-                  onClick={() => scrollTo(id)}
-                  className={cn(
-                    'flex w-full items-center rounded-xl px-4 py-3 text-sm font-medium transition-colors',
-                    active === id
-                      ? 'bg-accent/10 text-accent'
-                      : 'text-[#555] hover:bg-black/5 hover:text-[#1a1a1a] dark:text-[#aaa] dark:hover:bg-white/5 dark:hover:text-[#f5f5f0]'
-                  )}
-                >
-                  {label}
-                </button>
-              ))}
-            </nav>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </header>
   )
 }

@@ -11,8 +11,8 @@ import { ExternalLink } from 'lucide-react'
 const categories = [
   { value: 'all', label: 'All' },
   { value: 'Web', label: 'Web' },
-  { value: 'Design', label: 'Design' },
-  { value: 'Mobile', label: 'Mobile' },
+  { value: 'IoT', label: 'IoT' },
+  { value: 'AIML', label: 'AI/ML' },
 ]
 
 function ProjectCard({
@@ -20,12 +20,14 @@ function ProjectCard({
   description,
   tags,
   gradient,
+  link,
   index,
 }: {
   title: string
   description: string
   tags: string[]
   gradient: string
+  link: string | null
   index: number
 }) {
   const cardRef = useRef<HTMLDivElement>(null)
@@ -60,13 +62,19 @@ function ProjectCard({
       >
         <div className="relative z-10 p-6">
           <div className="mb-3 flex items-center justify-between">
-            <span className="text-xs font-mono text-[#888] dark:text-[#777]">
+            <span className="text-xs font-mono text-tertiary">
               {String(index + 1).padStart(2, '0')}
             </span>
-            <ExternalLink size={14} className="text-[#aaa] transition-colors duration-200 group-hover:text-accent dark:text-[#555]" />
+            {link ? (
+              <a href={link} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()}>
+                <ExternalLink size={14} className="text-muted transition-colors duration-200 hover:text-accent" />
+              </a>
+            ) : (
+              <ExternalLink size={14} className="text-muted opacity-30" />
+            )}
           </div>
           <h3 className="mb-2 text-xl font-semibold text-[#1a1a1a] dark:text-[#f5f5f0]">{title}</h3>
-          <p className="mb-4 text-sm leading-relaxed text-[#444] dark:text-[#aaa]">{description}</p>
+          <p className="mb-4 text-sm leading-relaxed text-secondary">{description}</p>
           <div className="flex flex-wrap gap-2">
             {tags.map((tag) => (
               <Badge key={tag}>{tag}</Badge>
@@ -87,7 +95,7 @@ export function Projects() {
 
   const filtered = category === 'all'
     ? portfolioData.projects
-    : portfolioData.projects.filter((p) => p.category === category)
+    : portfolioData.projects.filter((p) => p.categories.includes(category))
 
   return (
     <section
@@ -106,7 +114,7 @@ export function Projects() {
           </h2>
         </ScrollReveal>
         <ScrollReveal delay={0.15}>
-          <p className="mb-10 text-base text-[#555] dark:text-[#aaa]">
+          <p className="mb-10 text-base text-secondary">
             A collection of projects I&apos;ve built and designed.
           </p>
         </ScrollReveal>

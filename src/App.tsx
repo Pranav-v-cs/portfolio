@@ -5,7 +5,7 @@ import { Navbar } from './components/layout/Navbar'
 import { BottomNav } from './components/layout/BottomNav'
 import { Footer } from './components/layout/Footer'
 import { CustomCursor } from './components/effects/CustomCursor'
-import { GeometricBackground } from './components/effects/GeometricBackground'
+import { InteractiveDotGrid } from './components/effects/InteractiveDotGrid'
 import { SplashScreen } from './components/effects/SplashScreen'
 import { Hero } from './components/sections/Hero'
 import { About } from './components/sections/About'
@@ -18,12 +18,13 @@ export default function App() {
     <ThemeProvider>
       <SplashScreen />
       <CustomCursor />
-      <GeometricBackground />
+      <InteractiveDotGrid />
+      <div className="fixed inset-0 z-5 bg-white/40 dark:bg-black/30 backdrop-blur-[2px]" aria-hidden="true" />
 
       <Navbar />
       <BottomNav />
 
-      <main className="pt-20">
+      <main className="pt-20 relative z-10">
         <Hero />
         <About />
         <Projects />

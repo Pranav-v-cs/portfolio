@@ -68,7 +68,7 @@ export function ParticleBackground() {
 
         ctx.beginPath()
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2)
-        ctx.fillStyle = `rgba(5, 150, 105, ${p.alpha})`
+        ctx.fillStyle = `rgba(107, 142, 92, ${p.alpha})`
         ctx.fill()
       }
 

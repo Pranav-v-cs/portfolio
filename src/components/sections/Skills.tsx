@@ -1,40 +1,77 @@
-'use client'
+import { useState } from 'react'
+import { ScrollReveal } from '../effects/ScrollReveal'
+import { skillIcons } from '../../data/portfolio'
 
-import { useRef } from 'react'
-import { motion, useInView } from 'framer-motion'
-import { ScrollReveal, StaggerReveal, fadeInItem } from '../effects/ScrollReveal'
-import { portfolioData } from '../../data/portfolio'
+const groups = [
+  { label: 'Programming', skills: ['Python', 'Java', 'C++', 'C'] },
+  { label: 'Frontend', skills: ['JavaScript', 'React', 'Next.js', 'Tailwind CSS', 'HTML', 'CSS'] },
+  { label: 'Backend', skills: ['Node.js', 'Express.js', 'FastAPI', 'Flask', 'Django', 'MySQL', 'SQLite', 'PostgreSQL', 'MongoDB'] },
+  { label: 'AI & Tools', skills: ['OpenCV', 'Git', 'Linux', 'GitHub', 'Figma', 'Shell', 'LMStudio', 'Ollama', 'Vercel', 'Render', 'Railway', 'Docker'] },
+]
 
-function SkillBar({ name, level, category }: { name: string; level: number; category: string }) {
-  const ref = useRef<HTMLDivElement>(null)
-  const isInView = useInView(ref, { once: true })
+function MarqueeRow({ skills, reverse }: { skills: string[]; reverse: boolean }) {
+  const [paused, setPaused] = useState(false)
+  const copies = 8
+  const items = Array.from({ length: copies * skills.length }, (_, i) => ({
+    name: skills[i % skills.length],
+    id: Math.floor(i / skills.length) * skills.length + (i % skills.length),
+  }))
 
   return (
-    <motion.div variants={fadeInItem()} ref={ref}>
-      <div className="rounded-2xl border border-black/10 bg-white/70 p-5 shadow-lg shadow-black/5 backdrop-blur-xl dark:border-white/10 dark:bg-white/[0.04] dark:shadow-black/20">
-        <div className="mb-1 flex items-center justify-between">
-          <span className="text-sm font-medium text-[#1a1a1a] dark:text-[#f5f5f0]">{name}</span>
-          <span className="font-mono text-xs text-[#888] dark:text-[#777]">{category}</span>
-        </div>
-        <div className="relative mt-3 h-1.5 overflow-hidden rounded-full bg-black/10 dark:bg-white/10">
-          <motion.div
-            className="absolute inset-y-0 left-0 rounded-full bg-accent"
-            initial={{ width: 0 }}
-            animate={isInView ? { width: `${level}%` } : {}}
-            transition={{ duration: 1, delay: 0.2, ease: [0.25, 0.1, 0.25, 1] as const }}
-          />
-        </div>
+    <div
+      className="overflow-hidden"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+    >
+      <div
+        className="flex w-max items-center gap-4 py-2"
+        style={{
+          animation: `${reverse ? 'marquee-reverse' : 'marquee'} ${12 + skills.length * 2}s linear infinite`,
+          animationPlayState: paused ? 'paused' : 'running',
+        }}
+      >
+        {items.map((item, i) => {
+          const icon = skillIcons[item.name]
+          const isDirectUrl = icon && (icon.startsWith('http') || icon.startsWith('/'))
+          return (
+            <div
+              key={`${item.name}-${i}`}
+              className="flex shrink-0 items-center gap-2.5 rounded-xl border border-black/10 bg-white/60 px-4 py-2.5 shadow-sm backdrop-blur-sm dark:border-white/10 dark:bg-white/[0.04]"
+            >
+              {icon && isDirectUrl ? (
+                <img
+                  src={icon}
+                  alt={item.name}
+                  className="h-5 w-5"
+                />
+              ) : icon ? (
+                <>
+                  <img
+                    src={`https://skillicons.dev/icons?i=${icon}&theme=light`}
+                    alt={item.name}
+                    className="h-5 w-5 dark:hidden"
+                  />
+                  <img
+                    src={`https://skillicons.dev/icons?i=${icon}&theme=dark`}
+                    alt={item.name}
+                    className="hidden h-5 w-5 dark:block"
+                  />
+                </>
+              ) : null}
+              <span className="whitespace-nowrap text-sm font-medium text-[#444] dark:text-[#ccc]">
+                {item.name}
+              </span>
+            </div>
+          )
+        })}
       </div>
-    </motion.div>
+    </div>
   )
 }
 
 export function Skills() {
   return (
-    <section
-      id="skills"
-      className="relative px-6 py-40"
-    >
+    <section id="skills" className="relative px-6 py-40">
       <div className="mx-auto w-full max-w-5xl">
         <ScrollReveal>
           <div className="mb-2 text-xs font-medium tracking-widest text-accent uppercase">
@@ -47,17 +84,22 @@ export function Skills() {
           </h2>
         </ScrollReveal>
         <ScrollReveal delay={0.15}>
-          <p className="mb-10 text-base text-[#555] dark:text-[#aaa]">
+          <p className="mb-10 text-base text-secondary">
             Technologies I work with day-to-day.
           </p>
         </ScrollReveal>
 
         <ScrollReveal delay={0.2}>
-          <StaggerReveal className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {portfolioData.skills.map((skill) => (
-              <SkillBar key={skill.name} {...skill} />
+          <div className="space-y-6">
+            {groups.map((group, i) => (
+              <div key={group.label}>
+                <span className="mb-2 block text-xs font-medium tracking-wider text-tertiary uppercase">
+                  {group.label}
+                </span>
+                <MarqueeRow skills={group.skills} reverse={i % 2 === 1} />
+              </div>
             ))}
-          </StaggerReveal>
+          </div>
         </ScrollReveal>
       </div>
     </section>

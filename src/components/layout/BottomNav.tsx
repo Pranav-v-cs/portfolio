@@ -41,8 +41,8 @@ export function BottomNav() {
   }
 
   return (
-    <nav className="fixed bottom-6 left-1/2 z-50 -translate-x-1/2 lg:hidden">
-      <div className="flex items-center gap-1 rounded-full border border-black/10 bg-white/80 px-3 py-2 shadow-lg shadow-black/5 backdrop-blur-2xl dark:border-white/10 dark:bg-black/80 dark:shadow-black/20">
+    <nav className="fixed bottom-6 left-1/2 z-50 -translate-x-1/2 md:hidden">
+      <div className="glass flex items-center gap-1 rounded-full px-3 py-2">
         {sections.map(({ id, icon: Icon }) => (
           <button
             key={id}
@@ -51,7 +51,7 @@ export function BottomNav() {
               'relative flex h-10 w-10 items-center justify-center rounded-full transition-all duration-200',
               active === id
                 ? 'text-accent'
-                : 'text-[#888] hover:text-[#444] dark:text-[#777] dark:hover:text-[#aaa]'
+                : 'text-tertiary hover:text-secondary'
             )}
           >
             {active === id && (

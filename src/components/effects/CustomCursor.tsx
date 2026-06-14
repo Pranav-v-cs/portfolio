@@ -1,47 +1,62 @@
 'use client'
 
-import { useEffect } from 'react'
+import { useState, useLayoutEffect, useCallback } from 'react'
+import { motion } from 'framer-motion'
 import { useMousePosition } from '../../hooks/useMousePosition'
-import { motion, useSpring } from 'framer-motion'
 
 export function CustomCursor() {
   const { x, y } = useMousePosition()
-  const cursorX = useSpring(x, { stiffness: 300, damping: 35 })
-  const cursorY = useSpring(y, { stiffness: 300, damping: 35 })
-  const dotX = useSpring(x, { stiffness: 500, damping: 20 })
-  const dotY = useSpring(y, { stiffness: 500, damping: 20 })
+  const [onAccent, setOnAccent] = useState(false)
+  const [isMobile, setIsMobile] = useState(true)
 
-  useEffect(() => {
-    document.body.style.cursor = 'none'
-    return () => { document.body.style.cursor = 'auto' }
+  const checkAccent = useCallback((target: HTMLElement | null) => {
+    let el: HTMLElement | null = target
+    while (el && el !== document.documentElement) {
+      if (getComputedStyle(el).backgroundColor === 'rgb(136, 255, 85)' || getComputedStyle(el).backgroundColor === 'rgb(107, 142, 92)') {
+        return true
+      }
+      el = el.parentElement
+    }
+    return false
   }, [])
 
+  useLayoutEffect(() => {
+    const mq = window.matchMedia('(pointer: fine) and (min-width: 768px)')
+    setIsMobile(!mq.matches)
+    if (!mq.matches) return
+
+    document.documentElement.setAttribute('style', 'cursor: none !important')
+    const sheet = new CSSStyleSheet()
+    sheet.replaceSync('*, *::before, *::after { cursor: none !important; }')
+    document.adoptedStyleSheets = [...document.adoptedStyleSheets, sheet]
+
+    const handle = (e: MouseEvent) => setOnAccent(checkAccent(e.target as HTMLElement))
+    document.addEventListener('mouseover', handle)
+    return () => {
+      document.documentElement.removeAttribute('style')
+      document.adoptedStyleSheets = document.adoptedStyleSheets.filter(s => s !== sheet)
+      document.removeEventListener('mouseover', handle)
+    }
+  }, [checkAccent])
+
+  if (isMobile) return null
+
   return (
-    <>
-      {/* Outer ring */}
-      <motion.div
-        className="pointer-events-none fixed z-[9999] hidden lg:block"
+    <motion.div
+      className="pointer-events-none fixed z-[9999] hidden md:block"
+      style={{ translate: '-50% -50%' }}
+      animate={{ left: x, top: y }}
+      transition={{ type: 'spring', stiffness: 2000, damping: 25, mass: 0.1 }}
+    >
+      <div
+        className="h-4 w-4 rounded-full blur-[3px] transition-colors duration-150"
         style={{
-          left: cursorX,
-          top: cursorY,
-          translateX: '-50%',
-          translateY: '-50%',
+          backgroundColor: onAccent ? '#0a0a0a' : 'var(--color-accent)',
+          boxShadow: onAccent
+            ? '0 0 10px var(--color-accent-glow)'
+            : '0 0 10px var(--color-accent-glow)',
         }}
-      >
-        <div className="h-7 w-7 rounded-full border border-accent/50 bg-accent/5" />
-      </motion.div>
-      {/* Inner dot */}
-      <motion.div
-        className="pointer-events-none fixed z-[9999] hidden lg:block"
-        style={{
-          left: dotX,
-          top: dotY,
-          translateX: '-50%',
-          translateY: '-50%',
-        }}
-      >
-        <div className="h-1.5 w-1.5 rounded-full bg-accent/70" />
-      </motion.div>
-    </>
+      />
+    </motion.div>
   )
 }

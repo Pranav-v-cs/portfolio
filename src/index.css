@@ -11,11 +11,23 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-  --color-accent: #059669;
-  --color-accent-soft: #0596691a;
-  --color-accent-glow: #05966966;
+  --color-accent: #88FF55;
+  --color-accent-soft: #88FF551a;
+  --color-accent-glow: #88FF5566;
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "Fira Code", ui-monospace, monospace;
+}
+
+.dark {
+  --color-accent: #88FF55;
+  --color-accent-soft: #88FF551a;
+  --color-accent-glow: #88FF5566;
+}
+
+:root:not(.dark) {
+  --color-accent: #6b8e5c;
+  --color-accent-soft: #6b8e5c1a;
+  --color-accent-glow: #6b8e5c66;
 }
 
 @layer base {
@@ -28,7 +40,7 @@
   }
 
   body {
-    @apply bg-[#f5f5f0] text-[#1a1a1a] font-sans transition-colors duration-300;
+    @apply bg-[#efeae2] text-[#2d2d2d] font-sans transition-colors duration-300;
     @apply dark:bg-[#0a0a0a] dark:text-[#f5f5f0];
   }
 
@@ -47,6 +59,16 @@
 .dark .bg-geometric {
   background-image:
     radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.03) 1px, transparent 0);
+}
+
+/* ===== Marquee animation ===== */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-12.5%); }
+}
+@keyframes marquee-reverse {
+  0% { transform: translateX(-12.5%); }
+  100% { transform: translateX(0); }
 }
 
 /* ===== Floating geometric shapes ===== */
@@ -81,11 +103,23 @@
 }
 
 @utility text-gradient {
-  @apply bg-linear-to-r from-accent to-emerald-300 bg-clip-text text-transparent;
+  @apply bg-linear-to-r from-accent to-yellow-200 bg-clip-text text-transparent;
 }
 
 @utility glow {
   box-shadow: 0 0 20px var(--color-accent-glow), 0 0 40px var(--color-accent-glow);
+}
+
+@utility text-secondary {
+  @apply text-[#444] dark:text-[#aaa];
+}
+
+@utility text-tertiary {
+  @apply text-[#666] dark:text-[#888];
+}
+
+@utility text-muted {
+  @apply text-[#999] dark:text-[#666];
 }
 
 @utility no-scrollbar {
