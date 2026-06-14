@@ -2,7 +2,7 @@
 
 import { useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
-import { ArrowDown, Mail } from 'lucide-react'
+import { ArrowDown, Mail, MapPin } from 'lucide-react'
 import { Magnetic } from '../effects/Magnetic'
 import { Button } from '../ui/button'
 import { portfolioData } from '../../data/portfolio'
@@ -63,6 +63,16 @@ export function Hero() {
         >
           <span className="h-1.5 w-1.5 rounded-full bg-accent animate-pulse" />
           Available for work
+        </motion.div>
+
+        <motion.div
+          className="mb-4 inline-flex items-center gap-2 rounded-full border border-accent/20 bg-accent/5 px-4 py-1.5 text-xs text-accent"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+        >
+          <MapPin size={12} />
+          {portfolioData.location}
         </motion.div>
 
         <h1 className="mb-4 text-5xl font-bold tracking-tight sm:text-7xl lg:text-8xl">

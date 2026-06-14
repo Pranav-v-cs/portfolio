@@ -88,6 +88,7 @@ export const portfolioData = {
       gradient: 'from-rose-500/20 to-purple-500/20',
     },
   ],
+  location: 'Coimbatore, India',
   social: {
     github: 'https://github.com/pranav-v-cs',
     email: 'pranav.vijayakumar216@gmail.com',
