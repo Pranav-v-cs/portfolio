@@ -32,7 +32,8 @@ function MarqueeRow({ skills, reverse }: { skills: string[]; reverse: boolean })
       >
         {items.map((item, i) => {
           const icon = skillIcons[item.name]
-          const isDirectUrl = icon && (icon.startsWith('http') || icon.startsWith('/'))
+          const src = icon?.startsWith('/') ? `${import.meta.env.BASE_URL}${icon.slice(1)}` : icon
+          const isDirectUrl = src && (src.startsWith('http') || src.startsWith('/'))
           return (
             <div
               key={`${item.name}-${i}`}
@@ -40,7 +41,7 @@ function MarqueeRow({ skills, reverse }: { skills: string[]; reverse: boolean })
             >
               {icon && isDirectUrl ? (
                 <img
-                  src={icon}
+                  src={src}
                   alt={item.name}
                   className="h-5 w-5"
                 />
