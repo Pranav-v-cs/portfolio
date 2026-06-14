@@ -21,7 +21,7 @@ export function CustomCursor() {
   }, [])
 
   useLayoutEffect(() => {
-    const mq = window.matchMedia('(min-width: 768px)')
+    const mq = window.matchMedia('(min-width: 1024px)')
     setIsMobile(!mq.matches)
     if (!mq.matches) return
 
