@@ -21,7 +21,7 @@ export function CustomCursor() {
   }, [])
 
   useLayoutEffect(() => {
-    const mq = window.matchMedia('(pointer: fine) and (min-width: 768px)')
+    const mq = window.matchMedia('(min-width: 768px)')
     setIsMobile(!mq.matches)
     if (!mq.matches) return
 
@@ -43,7 +43,7 @@ export function CustomCursor() {
 
   return (
     <motion.div
-      className="pointer-events-none fixed z-[9999] hidden md:block"
+      className="pointer-events-none fixed z-[9999]"
       style={{ translate: '-50% -50%' }}
       animate={{ left: x, top: y }}
       transition={{ type: 'spring', stiffness: 2000, damping: 25, mass: 0.1 }}
