@@ -33,6 +33,7 @@ function Counter({ value, suffix, label }: { value: string; suffix: string; labe
 }
 
 export function About() {
+  const base = import.meta.env.BASE_URL
   const [pos, setPos] = useState({ x: 50, y: 50 })
   const [revealed, setRevealed] = useState(false)
   const [hovering, setHovering] = useState(false)
@@ -79,12 +80,12 @@ export function About() {
                 onClick={() => setRevealed((r) => !r)}
               >
                 <img
-                  src="/images/avatar-dotmatrix.svg"
+                  src={`${base}images/avatar-dotmatrix.svg`}
                   alt="Pranav"
                   className="h-full w-full"
                 />
                 <img
-                  src="/images/avatar-original.jpg"
+                  src={`${base}images/avatar-original.jpg`}
                   alt="Pranav"
                   className="absolute inset-0 h-full w-full rounded-2xl object-cover transition-opacity duration-300"
                   style={{
